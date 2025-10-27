@@ -72,7 +72,7 @@ npm run selfbot
 1. 設定 `.env`：
    ```env
    DISCORD_TOKEN=你的BotToken
-   CHANNEL_ID=頻道ID
+   BOT_CHANNEL_ID=頻道ID
    ```
 
 2. 啟動：
@@ -88,7 +88,7 @@ npm run selfbot
    ```env
    USER_TOKEN=你的個人Token
    BOT_ID=目標機器人ID
-   CHANNEL_ID=頻道ID
+   SELFBOT_CHANNEL_ID=頻道ID
    ```
 
 2. 啟動：

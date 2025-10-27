@@ -23,8 +23,8 @@ USER_TOKEN=你的Token
 # 目標機器人 ID（右鍵點擊機器人 -> 複製 ID）
 BOT_ID=目標機器人的ID
 
-# 要發送命令的頻道 ID
-CHANNEL_ID=頻道ID
+# 要發送命令的頻道 ID（Selfbot 專用）
+SELFBOT_CHANNEL_ID=頻道ID
 
 # 是否立即執行第一次命令
 EXECUTE_IMMEDIATELY=false
@@ -58,7 +58,7 @@ node selfbot.js
 
 - 右鍵點擊你想使用的頻道
 - 點擊 **複製 ID**
-- 貼到 `.env` 的 `CHANNEL_ID`
+- 貼到 `.env` 的 `SELFBOT_CHANNEL_ID`
 
 #### 3. 取得機器人 ID
 
@@ -74,12 +74,12 @@ node selfbot.js
 
 ```javascript
 this.config = {
-    CHANNEL_ID: process.env.CHANNEL_ID,
-    COMMAND: '/hourly',    // 改成你想執行的命令
-    INTERVAL: 3600000,     // 間隔時間（毫秒）
-    RANDOM_DELAY: true,    // 是否添加隨機延遲
-    MIN_DELAY: 0,          // 最小延遲
-    MAX_DELAY: 300000,     // 最大延遲（5分鐘）
+   CHANNEL_ID: process.env.SELFBOT_CHANNEL_ID,
+   COMMAND: '/hourly',    // 改成你想執行的命令
+   INTERVAL: 3600000,     // 間隔時間（毫秒）
+   RANDOM_DELAY: true,    // 是否添加隨機延遲
+   MIN_DELAY: 0,          // 最小延遲
+   MAX_DELAY: 300000,     // 最大延遲（5分鐘）
 };
 ```
 
@@ -198,7 +198,7 @@ EXECUTE_IMMEDIATELY=true
 **錯誤：** `❌ 找不到指定的頻道`
 
 **解決方法：**
-1. 檢查 `CHANNEL_ID` 是否正確
+1. 檢查 `SELFBOT_CHANNEL_ID` 是否正確
 2. 確認你的帳號能看到該頻道
 3. 確認頻道 ID 沒有多餘的空格
 

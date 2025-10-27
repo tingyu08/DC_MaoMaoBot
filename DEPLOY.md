@@ -27,8 +27,8 @@
 #### 4. 設定環境變數（Secrets）
 - 點擊左側的 🔒 "Secrets" (或 Tools > Secrets)
 - 添加以下變數：
-  - Key: `DISCORD_TOKEN`, Value: 你的 Bot Token
-  - Key: `CHANNEL_ID`, Value: 你的頻道 ID
+   - Key: `DISCORD_TOKEN`, Value: 你的 Bot Token
+   - Key: `BOT_CHANNEL_ID`, Value: 你的頻道 ID
 - **注意：不要使用 .env 文件！**
 
 #### 5. 安裝依賴
@@ -100,8 +100,8 @@ git push -u origin main
 - 在專案頁面，點擊你的服務
 - 進入 "Variables" 標籤
 - 添加：
-  - `DISCORD_TOKEN`: 你的 Bot Token
-  - `CHANNEL_ID`: 你的頻道 ID
+   - `DISCORD_TOKEN`: 你的 Bot Token
+   - `BOT_CHANNEL_ID`: 你的頻道 ID
 
 #### 5. 部署
 Railway 會自動偵測到 `Procfile` 並開始部署
@@ -144,7 +144,7 @@ Railway 會自動偵測到 `Procfile` 並開始部署
 #### 5. 添加環境變數
 在 "Environment" 部分添加：
 - `DISCORD_TOKEN`
-- `CHANNEL_ID`
+- `BOT_CHANNEL_ID`
 
 #### 6. 部署
 點擊 "Create Background Worker"
@@ -220,7 +220,7 @@ pm2 logs discord-bot
 
 ### 無法發送訊息
 - 確認 Bot 有發送訊息權限
-- 確認 CHANNEL_ID 正確
+- 確認 BOT_CHANNEL_ID 正確
 - 檢查 Bot 是否在該伺服器中
 
 ### Railway/Render 休眠

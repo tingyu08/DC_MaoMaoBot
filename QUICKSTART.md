@@ -33,7 +33,7 @@
 ```env
 USER_TOKEN=你的個人帳號Token
 BOT_ID=目標機器人ID
-CHANNEL_ID=頻道ID
+SELFBOT_CHANNEL_ID=頻道ID
 ```
 
 ### 步驟 3：執行
@@ -61,7 +61,7 @@ npm run selfbot
 
 ```env
 DISCORD_TOKEN=你的BotToken
-CHANNEL_ID=頻道ID
+BOT_CHANNEL_ID=頻道ID
 ```
 
 ### 步驟 3：啟動

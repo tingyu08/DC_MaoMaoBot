@@ -196,7 +196,7 @@ copy .env.example .env
 2. 編輯 `.env` 文件，填入你的資訊:
 ```
 DISCORD_TOKEN=你的_Bot_Token
-CHANNEL_ID=你的_頻道_ID
+BOT_CHANNEL_ID=你的_頻道_ID
 ```
 
 **如何取得頻道 ID:**
@@ -288,7 +288,7 @@ npm run bot
 - 確認 Token 沒有多餘的空格
 
 ### 找不到頻道
-- 檢查 `CHANNEL_ID` 是否正確
+- 檢查 `BOT_CHANNEL_ID` 是否正確
 - 確認 Bot 已加入該伺服器
 - 確認 Bot 有權限查看該頻道
 
