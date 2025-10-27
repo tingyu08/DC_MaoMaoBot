@@ -8,11 +8,8 @@
     "dev": "node bot/server.js",
     "bot": "node bot/bot.js",
     "selfbot": "node selfbot/selfbot.js",
-    "check-secrets": "node scripts/check-secrets.js",
-    "prepare": "husky install",
-    "start:pm2": "npx pm2 start ecosystem.config.js --only dcautobot",
-    "stop:pm2": "npx pm2 stop dcautobot || true",
-    "restart:pm2": "npx pm2 restart dcautobot || npx pm2 start ecosystem.config.js --only dcautobot"
+  "check-secrets": "node scripts/check-secrets.js",
+  "prepare": "husky install"
   },
   "keywords": [
     "discord",
@@ -30,7 +27,6 @@
   }
   ,
   "devDependencies": {
-    "husky": "^8.0.0",
-    "pm2": "^5.2.0"
+    "husky": "^8.0.0"
   }
 }
