@@ -1,5 +1,9 @@
 require('dotenv').config();
-const { Client, GatewayIntentBits } = require('discord.js');
+const { Client, Events, GatewayIntentBits } = require('discord.js');
+const { saveConfig, loadConfig } = require('./configManager');
+const messages = require('./messages');
+const express = require('express');
+const cors = require('cors');
 const fs = require('fs');
 const path = require('path');
 
@@ -13,9 +17,14 @@ class DiscordBot {
         this.messageCount = 0;
         this.autoMessageRunning = false;
         this.configPath = path.join(__dirname, 'config.json');
+        this.app = null;
+        this.server = null;
 
         // 從檔案載入配置，如果不存在則使用預設值
         this.config = this.loadConfig();
+        
+        // 初始化 HTTP 服務器
+        this.initHttpServer();
     }
 
     // 載入配置檔案
@@ -116,6 +125,13 @@ class DiscordBot {
         // 停止自動發送訊息
         this.stopAutoMessage();
 
+        // 停止 HTTP 服務器
+        if (this.server) {
+            this.server.close();
+            this.server = null;
+            console.log('🛑 HTTP 服務器已停止');
+        }
+
         // 登出 Discord
         if (this.client) {
             await this.client.destroy();
@@ -188,6 +204,31 @@ class DiscordBot {
             lastMessage: this.lastMessage,
             messageCount: this.messageCount
         };
+    }
+
+    // 初始化 HTTP 服務器
+    initHttpServer() {
+        this.app = express();
+        const PORT = process.env.PORT || 10000;
+
+        this.app.use(cors());
+        this.app.use(express.json());
+
+        // 健康檢查端點
+        this.app.get('/', (req, res) => {
+            res.json({
+                status: 'ok',
+                uptime: process.uptime(),
+                botStatus: this.isRunning ? 'online' : 'offline',
+                lastMessage: this.lastMessage,
+                messageCount: this.messageCount
+            });
+        });
+
+        // 啟動 HTTP 服務器
+        this.server = this.app.listen(PORT, () => {
+            console.log(`🌐 HTTP 服務器運行於 http://localhost:${PORT}`);
+        });
     }
 
     // 更新配置
