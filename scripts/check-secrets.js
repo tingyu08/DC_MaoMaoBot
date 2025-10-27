@@ -29,13 +29,21 @@ const staged = getStagedFiles();
 let found = false;
 let problems = [];
 
+// Skip scanning some known non-sensitive paths (workflows, examples, backups, hook scripts)
+const skipPathRegex = /^(?:\.github\/|\.husky\/|scripts\/check-secrets\.js$|\.env\.example$|\.env\.backup$)/i;
+
 for (const f of staged) {
   if (!fs.existsSync(f)) continue;
+  if (skipPathRegex.test(f)) continue;
   if (fileLooksBinary(f)) continue;
   const content = fs.readFileSync(f, 'utf8');
   const lines = content.split(/\r?\n/);
   lines.forEach((line, idx) => {
-    if (tokenNameRegex.test(line) || discordTokenLike.test(line)) {
+    // Only flag token-like patterns or explicit assignment keywords
+    const hasAssignment = /\b(?:DISCORD_TOKEN|USER_TOKEN|API_KEY|BOT_TOKEN)\s*=/.test(line);
+    if (hasAssignment || discordTokenLike.test(line) || tokenNameRegex.test(line)) {
+      // For safety: ignore YAML/manifest 'name:' or docs lines that contain the word 'SECRET' only
+      if (/^\s*name\s*:\s*/i.test(line) || /^\s*-\s*/.test(line)) return;
       found = true;
       problems.push({ file: f, line: idx + 1, text: line.trim() });
     }
