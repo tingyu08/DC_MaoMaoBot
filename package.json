@@ -1,0 +1,26 @@
+{
+  "name": "dcautobot",
+  "version": "1.0.0",
+  "description": "Discord 自動發話機器人",
+  "main": "bot/server.js",
+  "scripts": {
+    "start": "node bot/server.js",
+    "dev": "node bot/server.js",
+    "bot": "node bot/bot.js",
+    "selfbot": "node selfbot/selfbot.js"
+  },
+  "keywords": [
+    "discord",
+    "bot",
+    "auto-message"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "discord.js": "^14.14.1",
+    "discord.js-selfbot-v13": "^3.7.1",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2"
+  }
+}

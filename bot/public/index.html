@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discord 機器人控制面板</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🤖 Discord 機器人控制面板</h1>
+            <div class="status-badge" id="statusBadge">
+                <span class="status-dot"></span>
+                <span class="status-text">離線</span>
+            </div>
+        </header>
+
+        <main>
+            <!-- 控制區域 -->
+            <section class="card control-section">
+                <h2>機器人控制</h2>
+                <div class="control-buttons">
+                    <button id="startBtn" class="btn btn-success">
+                        <span>▶</span> 啟動機器人
+                    </button>
+                    <button id="stopBtn" class="btn btn-danger" disabled>
+                        <span>⏹</span> 停止機器人
+                    </button>
+                </div>
+                <div id="botInfo" class="bot-info" style="display: none;">
+                    <p><strong>機器人名稱:</strong> <span id="botUsername">-</span></p>
+                    <p><strong>已發送訊息:</strong> <span id="messageCount">0</span> 則</p>
+                    <p><strong>最後訊息:</strong> <span id="lastMessage">-</span></p>
+                </div>
+            </section>
+
+            <!-- 設定區域 -->
+            <section class="card settings-section">
+                <h2>⚙️ 設定</h2>
+
+                <div class="setting-group">
+                    <label for="channelId">頻道 ID</label>
+                    <input type="text" id="channelId" placeholder="請輸入頻道 ID">
+                </div>
+
+                <div class="setting-group">
+                    <label for="interval">發送間隔（秒）</label>
+                    <input type="number" id="interval" min="60" value="300" step="60">
+                    <small>建議最少 60 秒以避免被視為洗版</small>
+                </div>
+
+                <div class="setting-group">
+                    <label for="mode">發送模式</label>
+                    <select id="mode">
+                        <option value="random">隨機</option>
+                        <option value="sequential">順序</option>
+                    </select>
+                </div>
+
+                <div class="setting-group">
+                    <label>訊息列表</label>
+                    <div id="messagesList" class="messages-list">
+                        <!-- 動態生成 -->
+                    </div>
+                    <button id="addMessageBtn" class="btn btn-secondary">
+                        <span>+</span> 新增訊息
+                    </button>
+                </div>
+
+                <button id="saveConfigBtn" class="btn btn-primary">
+                    💾 儲存設定
+                </button>
+            </section>
+
+            <!-- 狀態區域 -->
+            <section class="card status-section">
+                <h2>📊 即時狀態</h2>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-label">運行狀態</div>
+                        <div class="stat-value" id="runningStatus">離線</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">發送間隔</div>
+                        <div class="stat-value" id="intervalDisplay">-</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">發送模式</div>
+                        <div class="stat-value" id="modeDisplay">-</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-label">訊息數量</div>
+                        <div class="stat-value" id="messagesCount">-</div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>Discord 自動發話機器人 v1.0 | 請遵守 Discord 服務條款</p>
+        </footer>
+    </div>
+
+    <!-- 通知區域 -->
+    <div id="notification" class="notification"></div>
+
+    <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+# 環境變數和 Tokens
+.env
+.env.example
+.env.local
+.env.development
+.env.production
+*.token
+token.*
+
+# Token 相關指南（包含範例 token）
+*TOKEN*.md
+*Token*.md
+selfbot/TOKEN_GUIDE.md
+
+# 配置檔案
+bot/config.json
+config/*.json
+*.config.json
+
+# Node modules
+node_modules/
+
+# 日誌
+logs/
+*.log
+npm-debug.log*
+*.log
+logs/
+
+# 系統文件
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/

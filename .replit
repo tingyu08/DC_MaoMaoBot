@@ -1,0 +1,17 @@
+run = "npm start"
+entrypoint = "bot.js"
+hidden = [".config", "package-lock.json"]
+
+[languages.javascript]
+pattern = "**/*.js"
+syntax = "javascript"
+
+[languages.javascript.languageServer]
+start = "typescript-language-server --stdio"
+
+[nix]
+channel = "stable-23_11"
+
+[deployment]
+run = ["sh", "-c", "npm start"]
+deploymentTarget = "cloudrun"
