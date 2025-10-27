@@ -3,8 +3,10 @@ module.exports = {
     {
       name: 'dcautobot',
       cwd: __dirname,
-      script: 'npm',
-      args: 'run bot',
+      // Execute the node binary with bot/bot.js as argument to avoid invoking npm wrapper on Windows
+      script: 'node',
+      args: 'bot/bot.js',
+      exec_mode: 'fork',
       autorestart: true,
       watch: false,
       max_restarts: 10,
