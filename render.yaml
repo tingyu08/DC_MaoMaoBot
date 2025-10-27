@@ -1,0 +1,17 @@
+# Render service descriptor (template)
+# This defines a Background Worker on Render that runs your bot.
+# Do NOT put secrets here; configure secrets in the Render dashboard or via the Render CLI.
+
+services:
+  - type: worker
+    name: dcautobot-worker
+    env: node
+    plan: free
+    branch: main
+    # Build with npm ci (faster & reproducible)
+    buildCommand: npm ci
+    # Start command to run the bot process
+    startCommand: npm run bot
+    envVars:
+      - key: NODE_ENV
+        value: production

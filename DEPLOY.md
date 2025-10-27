@@ -114,31 +114,36 @@ Railway 會自動偵測到 `Procfile` 並開始部署
 ## 🎨 方案 3：Render（穩定，有免費方案）
 
 ### 優點：
-- ✅ 有免費方案
-- ✅ 不需要信用卡
-- ✅ 穩定可靠
-- ✅ 自動部署
+### 部署步驟（推薦，使用 render.yaml 範本）
 
-### 缺點：
-- ⚠️ 免費方案會在 15 分鐘不活動後休眠
-- ⚠️ 每月有運行時間限制（750 小時）
+我已新增 `render.yaml` 範本到專案根目錄，Render 會讀取此檔案並建立對應的 Background Worker。請按下列步驟部署：
 
-### 部署步驟：
+1. 把最新代碼推到 GitHub（如果還沒）：
+```powershell
+git add .
+git commit -m "Add render.yaml for Render deployment"
+git push origin main
+```
 
-#### 1. 推送代碼到 GitHub（同方案 2）
+2. 在 Render（https://render.com）登入，點右上 "New +" → 選擇 "Deploy from render.yaml"（或選擇建立 Background Worker 並在 UI 中手動設定）。
 
-#### 2. 註冊 Render
-前往 https://render.com 並註冊
+3. 如果使用 `render.yaml`：選擇你的 GitHub repository，Render 會自動讀取並建立服務（名稱：`dcautobot-worker`，branch: `main`，buildCommand: `npm ci`，startCommand: `npm run bot`）。
 
-#### 3. 創建新的 Web Service
-- 點擊 "New +"
-- 選擇 "Background Worker"
-- 連接你的 GitHub repository
+4. 在 Render 的 Dashboard 為該服務設定環境變數（Secrets）**不要把 token 寫入 repo**：
+   - `DISCORD_TOKEN`（必填）
+   - `BOT_CHANNEL_ID`（選填）
+   - 其他你需要的變數（`SELFBOT_CHANNEL_ID` 等，若使用 selfbot 請三思）
 
-#### 4. 設定
-- Name: DCautoBot
-- Environment: Node
-- Build Command: `npm install`
+5. 點選 Deploy（或 Create）後查看 Deploy logs，確認服務啟動並連線成功。
+
+6. 若你偏好手動在 UI 建立 Background Worker：
+   - New → Background Worker → 連接 GitHub repo
+   - Environment: Node
+   - Build command: `npm ci`
+   - Start command: `npm run bot`
+   - 在 Environment 添加必需的 secrets
+
+注意：Render 免費 worker 會在長時間未活動時休眠（約 15 分鐘），如需恆常運行請升級付費方案或改用自架主機。
 - Start Command: `node bot.js`
 
 #### 5. 添加環境變數
