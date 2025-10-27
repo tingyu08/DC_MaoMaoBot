@@ -1,0 +1,12 @@
+#!/usr/bin/env sh
+. "$(dirname "$0")/_/husky.sh"
+
+echo "Running pre-commit: check-secrets"
+npm run check-secrets
+RESULT=$?
+if [ $RESULT -ne 0 ]; then
+  echo "Pre-commit hook failed: secrets check detected potential secrets. Commit aborted."
+  exit $RESULT
+fi
+
+exit 0

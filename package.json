@@ -7,7 +7,9 @@
     "start": "node bot/server.js",
     "dev": "node bot/server.js",
     "bot": "node bot/bot.js",
-    "selfbot": "node selfbot/selfbot.js"
+    "selfbot": "node selfbot/selfbot.js",
+    "check-secrets": "node scripts/check-secrets.js",
+    "prepare": "husky install"
   },
   "keywords": [
     "discord",
@@ -22,5 +24,9 @@
     "discord.js-selfbot-v13": "^3.7.1",
     "dotenv": "^16.6.1",
     "express": "^4.18.2"
+  }
+  ,
+  "devDependencies": {
+    "husky": "^8.0.0"
   }
 }
