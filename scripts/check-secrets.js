@@ -29,8 +29,8 @@ const staged = getStagedFiles();
 let found = false;
 let problems = [];
 
-// Skip scanning some known non-sensitive paths (workflows, examples, backups, hook scripts)
-const skipPathRegex = /^(?:\.github\/|\.husky\/|scripts\/check-secrets\.js$|\.env\.example$|\.env\.backup$)/i;
+// Skip scanning some known non-sensitive paths (workflows, examples, backups, hook scripts, baseline)
+const skipPathRegex = /^(?:\.github\/|\.husky\/|scripts\/check-secrets\.js$|\.env\.example$|\.env\.backup$|\.secrets\.baseline$)/i;
 
 for (const f of staged) {
   if (!fs.existsSync(f)) continue;
