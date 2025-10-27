@@ -1,6 +1,8 @@
 # 環境變數和 Tokens
 .env
 # 注意：`.env.example` 保留於版本控制以提供範例，請勿在 `.env` 中放入真實 token
+# 本地備份（包含敏感值）
+.env.backup
 *TOKEN*.md
 *Token*.md
 selfbot/TOKEN_GUIDE.md
